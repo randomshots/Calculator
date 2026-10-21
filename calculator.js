@@ -1,3 +1,36 @@
+//1. Dark mode part
+
+//dark mode state
+let darkModeState = false;
+//variable that modifies the "dark-mode" class related variables
+const darkModeClass = document.querySelector(".dark-mode");
+//variable that modifies the "calculator" class related variables, mainly buttons
+const calculatorButtons = document.querySelectorAll(".calculator-button");
+darkModeClass.addEventListener('click', () => {
+    if (darkModeState===false) {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        darkModeClass.style.borderColor = "white"
+        darkModeState = true;
+        darkModeClass.textContent = "Light Mode";
+        calculatorButtons.forEach((button)=>{
+            button.style.backgroundColor = "black";
+            button.style.color = "white";
+        })
+    } else if (darkModeState===true) {
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        darkModeClass.style.borderColor = "black"
+        darkModeState = false;
+        darkModeClass.textContent = "Dark Mode";
+        calculatorButtons.forEach((button)=>{
+            button.style.backgroundColor = "white";
+            button.style.color = "black";
+        })  
+    }
+})
+
+//2. Calculator Part
 //numbers declaration
 const zero = document.getElementById("zero");
 const one = document.getElementById("one");
@@ -215,25 +248,29 @@ clear.addEventListener('click', () => {
 })
 
 plus.addEventListener('click', () => {
-    let currNum = Number(resultString);
-
-    console.log(currNum);
-    if (op==='') {
-        num = currNum;
+    if (equalPressed===true) {
+        equalPressed = false;
+        num = num;
         op = '+';
     } else {
-        if (op==='+') {
-            num += currNum;
+        let currNum = Number(resultString);
+        if (op==='') {
+            num = currNum;
             op = '+';
-        } else if (op==='-') {
-            num -= currNum;
-            op = '+';
-        } else if (op==='*') {
-            num *= currNum;
-            op = '+';
-        } else if (op==='/') {
-            num /= currNum;
-            op = '+';
+        } else {
+            if (op==='+') {
+                num += currNum;
+                op = '+';
+            } else if (op==='-') {
+                num -= currNum;
+                op = '+';
+            } else if (op==='*') {
+                num *= currNum;
+                op = '+';
+            } else if (op==='/') {
+                num /= currNum;
+                op = '+';
+            }
         }
     }
     resultString = '0';
@@ -241,25 +278,30 @@ plus.addEventListener('click', () => {
 })
 
 minus.addEventListener('click', () => {
-    let currNum = Number(resultString);
-
-    console.log(currNum);
-    if (op==='') {
-        num = currNum;
+    if (equalPressed===true) {
+        equalPressed = false;
+        num = num;
         op = '-';
     } else {
-        if (op==='+') {
-            num += currNum;
+        let currNum = Number(resultString);
+
+        if (op==='') {
+            num = currNum;
             op = '-';
-        } else if (op==='-') {
-            num -= currNum;
-            op = '-';
-        } else if (op==='*') {
-            num *= currNum;
-            op = '-';
-        } else if (op==='/') {
-            num /= currNum;
-            op = '-';
+        } else {
+            if (op==='+') {
+                num += currNum;
+                op = '-';
+            } else if (op==='-') {
+                num -= currNum;
+                op = '-';
+            } else if (op==='*') {
+                num *= currNum;
+                op = '-';
+            } else if (op==='/') {
+                num /= currNum;
+                op = '-';
+            }
         }
     }
     resultString = '0';
@@ -268,25 +310,29 @@ minus.addEventListener('click', () => {
 })
 
 multiply.addEventListener('click', () => {
-    let currNum = Number(resultString);
-
-    console.log(currNum);
-    if (op==='') {
-        num = currNum;
+    if (equalPressed===true) {
+        equalPressed = false;
+        num = num;
         op = '*';
     } else {
-        if (op==='+') {
-            num += currNum;
+        let currNum = Number(resultString);
+        if (op==='') {
+            num = currNum;
             op = '*';
-        } else if (op==='-') {
-            num -= currNum;
-            op = '*';
-        } else if (op==='*') {
-            num *= currNum;
-            op = '*';
-        } else if (op==='/') {
-            num /= currNum;
-            op = '*';
+        } else {
+            if (op==='+') {
+                num += currNum;
+                op = '*';
+            } else if (op==='-') {
+                num -= currNum;
+                op = '*';
+            } else if (op==='*') {
+                num *= currNum;
+                op = '*';
+            } else if (op==='/') {
+                num /= currNum;
+                op = '*';
+            }
         }
     }
     resultString = '0';
@@ -294,25 +340,29 @@ multiply.addEventListener('click', () => {
 })
 
 divide.addEventListener('click', () => {
-    let currNum = Number(resultString);
-
-    console.log(currNum);
-    if (op==='') {
-        num = currNum;
+    if (equalPressed===true) {
+        equalPressed = false;
+        num = num;
         op = '/';
     } else {
-        if (op==='+') {
-            num += currNum;
+        let currNum = Number(resultString);
+        if (op==='') {
+            num = currNum;
             op = '/';
-        } else if (op==='-') {
-            num -= currNum;
-            op = '/';
-        } else if (op==='*') {
-            num *= currNum;
-            op = '/';
-        } else if (op==='/') {
-            num /= currNum;
-            op = '/';
+        } else {
+            if (op==='+') {
+                num += currNum;
+                op = '/';
+            } else if (op==='-') {
+                num -= currNum;
+                op = '/';
+            } else if (op==='*') {
+                num *= currNum;
+                op = '/';
+            } else if (op==='/') {
+                num /= currNum;
+                op = '/';
+            }
         }
     }
     resultString = '0';
@@ -322,15 +372,19 @@ divide.addEventListener('click', () => {
 equal.addEventListener('click', () => {
     equalPressed = true;
     let currNum = Number(resultString);
-    if (op==='+') {
-        num += currNum;
-    } else if (op==='-') {
-        num -= currNum;
-    } else if (op==='*') {
-        num *= currNum;
-    } else if (op==='/') {
-        num /= currNum;
+    if (op==='') {
+        calculatorDisplay.textContent = currNum;
+        // equalPressed = false;
+    } else {
+        if (op==='+') {
+            num += currNum;
+        } else if (op==='-') {
+            num -= currNum;
+        } else if (op==='*') {
+            num *= currNum;
+        } else if (op==='/') {
+            num /= currNum;
+        }
+        calculatorDisplay.textContent = num
     }
-    calculatorDisplay.textContent = num
-    
 })
