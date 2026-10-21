@@ -374,7 +374,7 @@ equal.addEventListener('click', () => {
     let currNum = Number(resultString);
     if (op==='') {
         calculatorDisplay.textContent = currNum;
-        // equalPressed = false;
+        equalPressed = false;
     } else {
         if (op==='+') {
             num += currNum;
